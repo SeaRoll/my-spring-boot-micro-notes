@@ -12,7 +12,7 @@ spec:
           - pathType: Prefix
             backend:
               service:
-                name: exampleService
+                name: apple
                 port:
                   number: 80
-            path: /
+            path: /apples
