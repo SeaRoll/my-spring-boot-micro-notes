@@ -10,7 +10,6 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.2.0
 spec:
-  hostNetwork: true
   type: LoadBalancer
   loadBalancerIP: 20.86.217.99
   externalTrafficPolicy: Local
