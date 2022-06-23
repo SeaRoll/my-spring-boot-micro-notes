@@ -3,8 +3,12 @@ kind: Deployment
 metadata:
   name: hello-world
   namespace: default
+  labels:
+    app: hello-world
 spec:
-  replicas: 1 
+  replicas: 1
+  selector:
+    app: hello-world
   template:
     metadata:
       labels:
