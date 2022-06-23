@@ -14,5 +14,5 @@ spec:
               service:
                 name: hello-world
                 port:
-                  number: 30530
+                  number: 80
             path: /hello-world
