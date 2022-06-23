@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example
-  namespace: foo
+  namespace: ingress-nginx
 spec:
   ingressClassName: nginx
   rules:
