@@ -22,4 +22,4 @@ spec:
   imagePullSecrets:
   - name: regcred
 ```
-**note that the imagePullSecrets line is the one that takes the name `regcred` to pull from
+**note that the imagePullSecrets line is the one that takes the name `regcred` to pull**
