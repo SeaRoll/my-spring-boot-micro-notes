@@ -10,8 +10,8 @@ spec:
   - http:
       paths:
       - path: /apple
-          backend:
-            service:
-              name: apple-service
-              port:
-                number: 50050
+        backend:
+          service:
+            name: apple-service
+            port:
+              number: 50050
