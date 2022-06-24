@@ -11,15 +11,48 @@ kubectl create secret generic regcred \
 And then to pull images from secrets, you use the example below
 
 ```yaml
-apiVerstion: v1
-kind: Pod
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: private-reg
+  name: fraud
+  labels:
+    app: fraud
 spec:
-  containers
-  - name: private-reg-container
-    image: <your-private-image>
-  imagePullSecrets:
-  - name: regcred
+  replicas: 1
+  template:
+    metadata:
+      name: fraud
+      labels:
+        app: fraud
+    spec:
+      containers:
+        - name: fraud
+          image: fraud-service
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: default
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: fraud
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud
+spec:
+  selector:
+    app: fraud
+  ports:
+    - port: 80
+      targetPort: 8081
+  type: NodePort
 ```
 **note that the imagePullSecrets line is the one that takes the name `regcred` to pull**
+**also note that imagePullPolicy should always be Never because if not, it will try to pull from some external sources**
