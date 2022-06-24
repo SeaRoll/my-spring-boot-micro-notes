@@ -1,44 +1,39 @@
 # Kubernetes Ingress with Nginx
-[source](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html)
+[Kubernetes nginx ingress](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 
-#### Start by creating the “mandatory” resources for Nginx Ingress in your cluster.
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
+[Issues if ingress is pending in svc](https://github.com/docker/for-mac/issues/4903)
+
+Commands to know:
+```sh
+kubectl get svc -A
+kubectl get deploy -A
+kubectl describe ingress
+kubectl apply -f <filename>.yaml
 ```
 
-#### If you’re using Docker for Mac to run Kubernetes
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
+#### 1. Installing ingress-nginx
+Go to vendor folder and then apply the yaml file inside
+```
+kubectl apply -f ingress-deploy.yaml
 ```
 
-#### Check that it’s all set up correctly.
-```bash
-kubectl get pods --all-namespaces -l app=ingress-nginx
+#### 2. Check that the ingress is running 
+```
+kubectl get svc -A
+```
+Note: if the external-ip for the loadbalander is pending, 
+restart docker-desktop and then try
+
+#### 3. Apply ingress-service
+Configure ingress-service as you want it
+```
+kubectl apply -f ingress-service.yaml
 ```
 
-#### Create an ingress.yaml and then add this example
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-ingress
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  - http:
-      paths:
-        - path: /apple
-          backend:
-            serviceName: apple-service
-            servicePort: 5678
-        - path: /banana
-          backend:
-            serviceName: banana-service
-            servicePort: 5678
-```
+#### Troubleshooting:
+Q: My API gets accessed, but the api returns 404.
 
-#### Create the Ingress in the cluster
-```bash
-kubectl create -f ingress.yaml
-```
+A: This is because (especially spring-boot) ignores the prefix in 
+the ingress-service. apply correct prefix that the controller expects
+
+--
