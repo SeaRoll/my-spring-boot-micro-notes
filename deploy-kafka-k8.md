@@ -34,7 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zoo1
+  name: zoo
   labels:
     app: zookeeper
 spec:
