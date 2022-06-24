@@ -55,4 +55,5 @@ spec:
   type: NodePort
 ```
 **note that the imagePullSecrets line is the one that takes the name `regcred` to pull**
+
 **also note that imagePullPolicy should always be Never because if not, it will try to pull from some external sources**
