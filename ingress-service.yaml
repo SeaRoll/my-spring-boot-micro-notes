@@ -15,4 +15,4 @@ spec:
                 name: fraud
                 port:
                   number: 80
-            path: /fraud
+            path: /api/v1/fraud-check
