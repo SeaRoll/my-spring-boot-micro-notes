@@ -12,7 +12,7 @@ spec:
           - pathType: Prefix
             backend:
               service:
-                name: hello-world-service
+                name: fraud
                 port:
                   number: 80
-            path: /hello-world
+            path: /fraud
