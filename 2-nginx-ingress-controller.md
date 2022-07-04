@@ -44,6 +44,27 @@ helm upgrade --install ingress-nginx ingress-nginx \
 
 #### 3. Apply ingress-service
 
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+    - host:
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: fraud
+                port:
+                  number: 80
+            path: /api/v1/fraud-check
+```
+
 Configure ingress-service as you want it and then:
 
 ```
