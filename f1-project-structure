@@ -1,0 +1,25 @@
+# Good react project structure:
+
+```
+.
+├── .github                 // main ci pipeline with all GitHub action jobs
+├── cypress                 // e2e tests
+├── scripts                 // various scripts
+├── src
+│   ├── assets              // static assets
+│   ├── components          // dumb components
+│   ├── config              // config for endpoints etc
+│   ├── containers          // stateful components and wrappers
+│   ├── hooks               // custom hooks
+│   ├── pages               // all pages used as routes
+│   ├── queries             // queries used for http requests
+│   ├── store               // redux data store
+│   │   ├── feature1
+│   │   │   ├── action.jsx
+│   │   │   ├── reducer.jsx
+│   ├── utils               // various helpful data/methods
+│   │   ├── data            // static data
+│   │   ├── helper          // helper functions
+...
+
+```
